@@ -1,0 +1,34 @@
+server/exchange/ExchangeService.java
+ server.exchange.ExchangeService
+server/airport/AirportRepository.java
+ server.airport.AirportRepository
+server/common/model/Flight.java
+ server.common.model.Flight
+ server.common.model.Flight$FlightBuilder
+server/FlightApplication.java
+ server.FlightApplication
+server/airline/AirlineRepository.java
+ server.airline.AirlineRepository
+server/airport/AirportService.java
+ server.airport.AirportService
+server/common/Constants.java
+ server.common.Constants
+ server.common.Constants$EndPoint
+ server.common.Constants$Service
+server/common/model/ExchangeRate.java
+ server.common.model.ExchangeRate
+ server.common.model.ExchangeRate$ExchangeRateBuilder
+server/exchange/ExchangeRepository.java
+ server.exchange.ExchangeRepository
+server/common/model/Airport.java
+ server.common.model.Airport
+ server.common.model.Airport$AirportBuilder
+server/flight/FlightController.java
+ server.flight.FlightController
+server/flight/FlightService.java
+ server.flight.FlightService
+server/airline/AirlineService.java
+ server.airline.AirlineService
+server/common/model/FlightRequest.java
+ server.common.model.FlightRequest
+ server.common.model.FlightRequest$FlightRequestBuilder

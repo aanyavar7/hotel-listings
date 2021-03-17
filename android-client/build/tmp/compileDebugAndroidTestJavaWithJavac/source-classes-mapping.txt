@@ -1,0 +1,2 @@
+edu/vanderbilt/androidclient/test/BuildConfig.java
+ edu.vanderbilt.androidclient.test.BuildConfig

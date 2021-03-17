@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "applicationId": "edu.vanderbilt.androidclient",
+  "variantType": "BASE_APK",
+  "elements": [
+    {
+      "outputType": {
+        "type": "MERGED_MANIFESTS"
+      },
+      "apkData": {
+        "type": "MAIN",
+        "splits": [],
+        "versionCode": 1,
+        "versionName": "1.0",
+        "outputFile": "android-client-debug.apk",
+        "fullName": "debug",
+        "baseName": "debug",
+        "dirName": ""
+      },
+      "path": "AndroidManifest.xml",
+      "properties": {
+        "packageId": "edu.vanderbilt.androidclient",
+        "split": "",
+        "minSdkVersion": "26"
+      }
+    }
+  ]
+}
