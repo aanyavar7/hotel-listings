@@ -12,7 +12,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
-import server.common.Constants;
 
 import javax.sql.DataSource;
 import java.security.SecureRandom;
@@ -36,20 +35,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 // We specifically allow certain paths for all users, but the default
                 // behavior is to force authentication for anything that isn't explicitly
                 // allowed here.
-                .antMatchers(
-                        "/" + Constants.EndPoint.HOTELS,
-                        "/" + Constants.EndPoint.BEST_PRICE,
-                        "/" + Constants.EndPoint.ROOMS,
-//                        "/" + Constants.EndPoint.FLIGHTS,
-                        "/" + Constants.EndPoint.RATE
-                )
-                .permitAll()
-                // We default to requiring every request to at least come from
-                // an authorized user
-                .anyRequest()
-                .hasRole("USER")
+                .anyRequest().authenticated()
+//                .hasRole("USER")
                 .and()
-                .formLogin();
+                .httpBasic();
+//                .antMatchers(
+//                        "/" + Constants.EndPoint.AIRPORTS,
+//                        "/" + Constants.EndPoint.BEST_PRICE,
+//                        "/" + Constants.EndPoint.FLIGHT_DATES,
+//                        "/" + Constants.EndPoint.FLIGHTS,
+//                        "/" + Constants.EndPoint.RATE
+//                )
+//                .permitAll()
+//                // We default to requiring every request to at least come from
+//                // an authorized user
+//                .anyRequest()
+//                .hasRole("USER")
+//                .and()
+//                .formLogin();
     }
 
     @Autowired
@@ -68,29 +71,31 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         //  INSECURE, INSECURE, SECURITY RISK, SECURITY RISK
         //
         //
-        String randomAdminPassword =
-                RandomStringUtils.random(24, 0, 0, true, true, null, new SecureRandom());
-        String randomUserPassword =
+
+        String user = "user";
+        String userPassword = "pass";
+        String admin = "admin";
+        String adminPassword =
                 RandomStringUtils.random(24, 0, 0, true, true, null, new SecureRandom());
 
-        System.out.println("Admin User: admin" );
-        System.out.println("Admin Pass: "+ randomAdminPassword);
+        System.out.println("Admin User: " + admin);
+        System.out.println("Admin Pass: " + adminPassword);
 
-        System.out.println("Test User: user" );
-        System.out.println("User Pass: "+ randomUserPassword);
+        System.out.println("Test User: " + user);
+        System.out.println("User Pass: " + userPassword);
 
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .withDefaultSchema()
-                .withUser(User.withUsername("admin")
+                .withUser(User.withUsername(admin)
                         // We always need to salt & hash the passwords before they are stored
                         // in the database.
-                        .password(passwordEncoder().encode(randomAdminPassword))
-                        .roles("ADMIN","USER"))
-                .withUser(User.withUsername("user")
+                        .password(passwordEncoder().encode(adminPassword))
+                        .roles("ADMIN", "USER"))
+                .withUser(User.withUsername(user)
                         // We always need to salt & hash the passwords before they are stored
                         // in the database.
-                        .password(passwordEncoder().encode(randomUserPassword))
+                        .password(passwordEncoder().encode(userPassword))
                         .roles("USER"));
     }
 

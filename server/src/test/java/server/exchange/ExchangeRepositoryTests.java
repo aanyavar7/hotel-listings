@@ -11,10 +11,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DataJpaTest(properties = {
-        "spring.config.name=",
-        "spring.jpa.properties.hibernate.show_sql=false",
-})
+@DataJpaTest(properties = {"spring.datasource.data="})
 public class ExchangeRepositoryTests {
     @Autowired
     private TestEntityManager entityManager;

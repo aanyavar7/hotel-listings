@@ -14,10 +14,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@DataJpaTest(properties = {
-        "spring.config.name=",
-        "spring.jpa.properties.hibernate.show_sql=false"
-})
+@DataJpaTest(properties = {"spring.datasource.data="})
 public class HotelRepositoryTests {
     @Autowired
     private TestEntityManager entityManager;

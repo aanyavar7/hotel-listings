@@ -2,23 +2,17 @@ package server.exchange;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import server.common.model.ExchangeRate;
 
 import java.util.List;
-
-import server.common.model.ExchangeRate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest(properties = {
-        "spring.jpa.properties.hibernate.show_sql=false",
-        "spring.config.name="
-})
-@AutoConfigureMockMvc
+@SpringBootTest(properties = {"spring.datasource.data="})
 public class ExchangeServiceTests {
 
     @Autowired

@@ -49,7 +49,7 @@ public class SecurityTests {
     }
 
     //@Test
-    @WithMockUser(username="test",roles={"NOTUSER"})
+    @WithMockUser(username="user",roles={"NOTUSER"})
     public void testRequireUserRoleForAccountUser() throws Exception {
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/account" ))
@@ -57,7 +57,7 @@ public class SecurityTests {
     }
 
     //@Test
-    @WithMockUser(username="test",roles={"USER"})
+    @WithMockUser(username="user",roles={"USER"})
     public void testAccountUser() throws Exception {
         String result = mockMvc.perform(
                 MockMvcRequestBuilders.get("/account" ))
@@ -68,7 +68,7 @@ public class SecurityTests {
 
         UserDetailsImpl user = objectMapper.readValue(result, UserDetailsImpl.class);
 
-        Assertions.assertEquals("test", user.getUsername());
+        Assertions.assertEquals("user", user.getUsername());
         Assertions.assertTrue(user.isAccountNonExpired());
         Assertions.assertTrue(user.isAccountNonLocked());
         Assertions.assertTrue(user.isCredentialsNonExpired());

@@ -35,13 +35,13 @@ public class AccountController {
      * @return
      */
     @GetMapping
-    public UserDetails getCurrentUser(Authentication authentication){
+    public UserDetails getCurrentUser(Authentication authentication) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
         return userDetails;
     }
 
-    private List<SimpleGrantedAuthority> roles(String...roles){
+    private List<SimpleGrantedAuthority> roles(String... roles) {
         return Arrays.stream(roles)
                 .map(r -> new SimpleGrantedAuthority("ROLE_" + r))
                 .collect(Collectors.toList());
@@ -59,7 +59,7 @@ public class AccountController {
     // this method.
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public UserDetails addUser(String username, String password){
+    public UserDetails addUser(String username, String password) {
 
         User user = new User(
                 username,
@@ -72,7 +72,6 @@ public class AccountController {
 
         // We remove the password before returning the
         // information for the newly created user
-        return new User(user.getUsername(),"", user.getAuthorities());
+        return new User(user.getUsername(), "", user.getAuthorities());
     }
-
 }

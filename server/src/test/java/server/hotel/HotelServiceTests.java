@@ -2,7 +2,6 @@ package server.hotel;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import server.common.model.Hotel;
@@ -15,12 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 // Ensure that app does not create and populate repositories.
-@SpringBootTest(properties = {
-        "spring.jpa.properties.hibernate.show_sql=false",
-        "spring.config.name="
-})@AutoConfigureMockMvc
-// Create test table along with test data.
-//@Sql({"classpath:/hotel/create.sql"})
+@SpringBootTest(properties = {"spring.config.name="})
 public class HotelServiceTests {
     @MockBean
     HotelRepository hotelRepository;

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import server.common.model.Hotel;
@@ -22,13 +23,10 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static server.common.Constants.EndPoint.*;
 
-//import server.airline.FlightFactory;
-
-@SpringBootTest(properties = {
-        "spring.jpa.properties.hibernate.show_sql=false",
-        "spring.config.name="
-})
+@SpringBootTest(properties = {"spring.config.name="})
 @AutoConfigureMockMvc
+@WithMockUser(username="user",roles={"USER"})
+//@Ignore
 public class HotelControllerTests {
     @Autowired
     private MockMvc mockMvc;
@@ -134,7 +132,7 @@ public class HotelControllerTests {
                     });
 
             List<Hotel> cleanedResult = result.stream()
-                    .map(hotel -> hotel.withId(null))
+//                    .map(hotel -> hotel.withId(null))
                     .collect(Collectors.toList());
 
             verify(hotelService, times(1))

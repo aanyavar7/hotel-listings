@@ -18,19 +18,19 @@ server/common/Constants.java
  server.common.Constants
  server.common.Constants$EndPoint
  server.common.Constants$Service
-server/HotelApplication.java
- server.HotelApplication
+server/common/model/Room.java
+ server.common.model.Room
+ server.common.model.Room$RoomBuilder
 server/common/model/ExchangeRate.java
  server.common.model.ExchangeRate
  server.common.model.ExchangeRate$ExchangeRateBuilder
 server/exchange/ExchangeRepository.java
  server.exchange.ExchangeRepository
+server/HotelApplication.java
+ server.HotelApplication
 server/security/SecurityConfiguration.java
  server.security.SecurityConfiguration
-server/account/AccountController.java
- server.account.AccountController
 server/room/RoomService.java
  server.room.RoomService
-server/common/model/Room.java
- server.common.model.Room
- server.common.model.Room$RoomBuilder
+server/account/AccountController.java
+ server.account.AccountController

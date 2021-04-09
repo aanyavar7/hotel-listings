@@ -15,10 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 // Ensure that app does not create and populate repositories.
-@DataJpaTest(properties = {
-        "spring.config.name=",
-        "spring.jpa.properties.hibernate.show_sql=false"
-})
+@DataJpaTest(properties = {"spring.datasource.data="})
 public class RoomRepositoryTests {
     @Autowired
     private TestEntityManager entityManager;
