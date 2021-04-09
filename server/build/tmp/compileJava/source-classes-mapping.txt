@@ -1,34 +1,36 @@
+server/common/model/Hotel.java
+ server.common.model.Hotel
+ server.common.model.Hotel$HotelBuilder
+server/hotel/HotelController.java
+ server.hotel.HotelController
 server/exchange/ExchangeService.java
  server.exchange.ExchangeService
-server/airport/AirportRepository.java
- server.airport.AirportRepository
-server/common/model/Flight.java
- server.common.model.Flight
- server.common.model.Flight$FlightBuilder
-server/FlightApplication.java
- server.FlightApplication
-server/airline/AirlineRepository.java
- server.airline.AirlineRepository
-server/airport/AirportService.java
- server.airport.AirportService
+server/hotel/HotelService.java
+ server.hotel.HotelService
+server/hotel/HotelRepository.java
+ server.hotel.HotelRepository
+server/room/RoomRepository.java
+ server.room.RoomRepository
+server/common/model/RoomRequest.java
+ server.common.model.RoomRequest
+ server.common.model.RoomRequest$RoomRequestBuilder
 server/common/Constants.java
  server.common.Constants
  server.common.Constants$EndPoint
  server.common.Constants$Service
+server/HotelApplication.java
+ server.HotelApplication
 server/common/model/ExchangeRate.java
  server.common.model.ExchangeRate
  server.common.model.ExchangeRate$ExchangeRateBuilder
 server/exchange/ExchangeRepository.java
  server.exchange.ExchangeRepository
-server/common/model/Airport.java
- server.common.model.Airport
- server.common.model.Airport$AirportBuilder
-server/flight/FlightController.java
- server.flight.FlightController
-server/flight/FlightService.java
- server.flight.FlightService
-server/airline/AirlineService.java
- server.airline.AirlineService
-server/common/model/FlightRequest.java
- server.common.model.FlightRequest
- server.common.model.FlightRequest$FlightRequestBuilder
+server/security/SecurityConfiguration.java
+ server.security.SecurityConfiguration
+server/account/AccountController.java
+ server.account.AccountController
+server/room/RoomService.java
+ server.room.RoomService
+server/common/model/Room.java
+ server.common.model.Room
+ server.common.model.Room$RoomBuilder

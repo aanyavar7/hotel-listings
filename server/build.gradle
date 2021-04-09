@@ -16,6 +16,11 @@ repositories {
     mavenCentral()
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
 ext {
     set('springCloudVersion', "2020.0.1")
 }
@@ -23,6 +28,8 @@ ext {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
     implementation 'com.github.ben-manes.caffeine:caffeine'
     implementation 'io.reactivex.rxjava3:rxjava:3.0.8'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.4'
@@ -31,6 +38,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
 }
 
 dependencyManagement {

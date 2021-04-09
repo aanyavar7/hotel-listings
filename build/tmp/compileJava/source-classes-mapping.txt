@@ -13,12 +13,12 @@ booking/common/model/Airport.java
 booking/common/model/TripRequest.java
  booking.common.model.TripRequest
  booking.common.model.TripRequest$TripRequestBuilder
-booking/airport/AirportRepository.java
- booking.airport.AirportRepository
+booking/server.hotel/AirportRepository.java
+ booking.server.hotel.AirportRepository
 booking/trip/TripController.java
  booking.trip.TripController
-booking/airport/AirportService.java
- booking.airport.AirportService
+booking/server.hotel/AirportService.java
+ booking.server.hotel.AirportService
 booking/airline/AirlineRepository.java
  booking.airline.AirlineRepository
 booking/common/Constants.java

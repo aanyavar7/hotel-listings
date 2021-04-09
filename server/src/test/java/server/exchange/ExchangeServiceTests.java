@@ -4,33 +4,50 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.jdbc.Sql;
+import org.springframework.boot.test.mock.mockito.MockBean;
+
+import java.util.List;
 
 import server.common.model.ExchangeRate;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-// Ensure that app does not create and populate repositories.
-@SpringBootTest(properties = {"spring.datasource.schema=", "spring.datasource.data="})
+@SpringBootTest(properties = {
+        "spring.jpa.properties.hibernate.show_sql=false",
+        "spring.config.name="
+})
 @AutoConfigureMockMvc
-// Create test table along with test data.
-@Sql({"classpath:/exchange/create.sql"})
 public class ExchangeServiceTests {
 
     @Autowired
     ExchangeService exchangeService;
 
+    @MockBean
+    ExchangeRepository repository;
+
     @Test
     public void testExchangeRate() {
-        ExchangeRate expected = ExchangeRate.builder()
-                .fromCurrency("CAN")
-                .toCurrency("USD")
-                .exchangeRate(0.68)
-                .build();
+        ExchangeRate expected = new ExchangeRate(null, "DEF", "ABC", 2.0);
+        List<ExchangeRate> rates = List.of(
+                new ExchangeRate(null, "ABC", "DEF", 1.0),
+                expected,
+                new ExchangeRate(null, "GHI", "JKL", 3.0)
+        );
 
-        ExchangeRate result = exchangeService.findExchangeRate(
+        when(repository
+                .findByFromCurrencyAndToCurrency(
+                        expected.getFromCurrency(),
+                        expected.getToCurrency()))
+                .thenReturn(expected);
+
+        ExchangeRate result = exchangeService.getRate(
                 expected.getFromCurrency(), expected.getToCurrency());
 
-        assertThat(result.withId(null)).isEqualTo(expected);
+        assertThat(result).isEqualTo(expected);
+
+        verify(repository).findByFromCurrencyAndToCurrency(
+                expected.getFromCurrency(), expected.getToCurrency());
     }
 }

@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Server" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="server.FlightApplication" />
-    <module name="flights-monolithic.server" />
+    <option name="MAIN_CLASS_NAME" value="server.HotelApplication" />
+    <module name="rooms-monolithic.server" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="server.*" />

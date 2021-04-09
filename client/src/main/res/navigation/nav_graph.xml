@@ -16,6 +16,6 @@
     </fragment>
     <fragment
         android:id="@+id/airportFragment"
-        android:name="edu.vanderbilt.client.features.airport.AirportFragment"
+        android:name="edu.vanderbilt.client.features.server.hotel.AirportFragment"
         android:label="AirportFragment" />
 </navigation>

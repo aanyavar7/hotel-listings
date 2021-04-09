@@ -13,7 +13,7 @@ public class ExchangeService {
     @Autowired
     ExchangeRepository repository;
 
-    public ExchangeRate findExchangeRate(String fromCurrency, String toCurrency) {
+    public ExchangeRate getRate(String fromCurrency, String toCurrency) {
         return repository.findByFromCurrencyAndToCurrency(fromCurrency, toCurrency);
     }
 }

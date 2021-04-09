@@ -1,5 +1,5 @@
-booking/airport/AirportRepositoryTests.java
- booking.airport.AirportRepositoryTests
+booking/server.hotel/AirportRepositoryTests.java
+ booking.server.hotel.AirportRepositoryTests
 booking/exchange/ExchangeRepositoryTests.java
  booking.exchange.ExchangeRepositoryTests
 booking/airline/TripFactory.java
@@ -11,8 +11,8 @@ booking/exchange/ExchangeServiceTests.java
  booking.exchange.ExchangeServiceTests
 booking/airline/AirlineRepositoryTests.java
  booking.airline.AirlineRepositoryTests
-booking/airport/AirportServiceTests.java
- booking.airport.AirportServiceTests
+booking/server.hotel/AirportServiceTests.java
+ booking.server.hotel.AirportServiceTests
 booking/airline/AirlineServiceTests.java
  booking.airline.AirlineServiceTests
 booking/trip/TripIntegrationTests.java

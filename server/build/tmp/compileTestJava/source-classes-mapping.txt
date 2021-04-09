@@ -1,23 +1,21 @@
-server/airline/AirlineRepositoryTests.java
- server.airline.AirlineRepositoryTests
 server/exchange/ExchangeRepositoryTests.java
  server.exchange.ExchangeRepositoryTests
-server/airport/AirportServiceTests.java
- server.airport.AirportServiceTests
-server/airport/AirportRepositoryTests.java
- server.airport.AirportRepositoryTests
-server/flight/FlightIntegrationTests.java
- server.flight.FlightIntegrationTests
- server.flight.FlightIntegrationTests$1
- server.flight.FlightIntegrationTests$2
- server.flight.FlightIntegrationTests$3
- server.flight.FlightIntegrationTests$4
-server/airline/AirlineServiceTests.java
- server.airline.AirlineServiceTests
+server/hotel/HotelServiceTests.java
+ server.hotel.HotelServiceTests
 server/exchange/ExchangeServiceTests.java
  server.exchange.ExchangeServiceTests
-server/airline/FlightFactory.java
- server.airline.FlightFactory
- server.airline.FlightFactory$FlightPath
- server.airline.FlightFactory$FlightPath$FlightPathBuilder
- server.airline.FlightFactory$RandomFlightBuilder
+server/security/SecurityTests.java
+ server.security.SecurityTests
+ server.security.SecurityTests$SimplerGrantedAuthority
+ server.security.SecurityTests$UserDetailsImpl
+server/hotel/HotelRepositoryTests.java
+ server.hotel.HotelRepositoryTests
+server/hotel/HotelControllerTests.java
+ server.hotel.HotelControllerTests
+ server.hotel.HotelControllerTests$1
+ server.hotel.HotelControllerTests$2
+ server.hotel.HotelControllerTests$3
+server/room/RoomServiceTests.java
+ server.room.RoomServiceTests
+server/room/RoomRepositoryTests.java
+ server.room.RoomRepositoryTests

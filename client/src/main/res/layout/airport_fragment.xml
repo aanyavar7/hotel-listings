@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="edu.vanderbilt.client.features.airport.AirportViewModel" />
+            type="edu.vanderbilt.client.features.server.hotel.AirportViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -18,7 +18,7 @@
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".features.airport.AirportFragment">
+            tools:context=".features.server.hotel.AirportFragment">
 
             <TextView
                 android:id="@+id/text_view"

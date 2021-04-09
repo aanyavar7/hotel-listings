@@ -30,5 +30,5 @@
     <string name="user_not_registered_error">No user exists for this email address.</string>
     <string name="user_not_authorized">Incorrect password.</string>
     <string name="action_logout">Logout</string>
-    <string name="get_airports_content_description">Get list of all known airports.</string>
+    <string name="get_airports_content_description">Get list of all known hotels.</string>
 </resources>
