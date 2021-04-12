@@ -40,55 +40,50 @@ public class HotelControllerTests {
     @Autowired
     private ObjectMapper objectMapper;
 
-//    @Test
-//    public void testFindHotels() throws Exception {
-//        List<Room> rooms = new ArrayList<>();
-//        List<Hotel> hotels = List.of(
-//                new Hotel(1, "MAR", "The Ritz Carlton", "10295 Collins Avenue",
-//                        "Bal Harbour", "FL", "33154", "USA", rooms),
-//                new Hotel(2, "MAR", "St.Regis", "Eighty-Eight, West Paces Ferry Rd NW",
-//                        "Atlanta", "GA", "30305", "USA", rooms),
-//                new Hotel(3, "MAR", "JW Marriott", "201 8th Ave S",
-//                        "Nashville", "TN", "37203", "USA", rooms),
-//                new Hotel(4, "HLT", "Hampton Inn by Hilton", "310 4th Ave S",
-//                        "Nashville", "TN", "37201", "USA", rooms)
-//        );
-//
-//        for (Hotel expected : hotels) {
-//            //pull values from the one hotel i created to pass into findHotels
-//
-//            List<Hotel> expectedList = new ArrayList<>(1);
-//            expectedList.add(expected);
-//
-//            when(hotelService.findHotels().
-//                    thenReturn(expectedList);
-//
-//            String jsonResult = mockMvc.perform(
-//                    MockMvcRequestBuilders
-//                            .get("/" + HOTELS)
-//                            .queryParam("city", expected.getCity())
-//                            .queryParam("state", expected.getState())
-//                            .queryParam("country", expected.getCountry()))
-//                    .andExpect(status().isOk())
-//                    .andReturn()
-//                    .getResponse()
-//                    .getContentAsString();
-//
-//            List<Hotel> result = objectMapper.readValue(
-//                    jsonResult, new TypeReference<>() {
-//                    });
-//
-//            List<Hotel> cleanedResult = result.stream()
-//                    .map(hotel -> hotel.withId(null))
-//                    .collect(Collectors.toList());
-//
-//            verify(hotelService, times(1)).findHotels(roomRequest);
-//
-//            assertThat(cleanedResult).isEqualTo(expectedList);
-//
-//            clearInvocations(hotelService);
-//        }
-//    }
+    @Test
+    public void testFindHotels() throws Exception {
+        List<Room> rooms = new ArrayList<>();
+        List<Hotel> hotels = List.of(
+                new Hotel(1L, "MAR", "The Ritz Carlton", "10295 Collins Avenue",
+                        "Bal Harbour", "FL", "33154", "USA", rooms),
+                new Hotel(2L, "MAR", "St.Regis", "Eighty-Eight, West Paces Ferry Rd NW",
+                        "Atlanta", "GA", "30305", "USA", rooms),
+                new Hotel(3L, "MAR", "JW Marriott", "201 8th Ave S",
+                        "Nashville", "TN", "37203", "USA", rooms),
+                new Hotel(4L, "HLT", "Hampton Inn by Hilton", "310 4th Ave S",
+                        "Nashville", "TN", "37201", "USA", rooms)
+        );
+
+        for (Hotel expected : hotels) {
+            List<Hotel> expectedList = new ArrayList<>(1);
+            expectedList.add(expected);
+
+            when(hotelService.findHotels())
+                    .thenReturn(expectedList);
+
+            String jsonResult = mockMvc.perform(
+                    MockMvcRequestBuilders
+                            .get("/" + HOTELS))
+                    .andExpect(status().isOk())
+                    .andReturn()
+                    .getResponse()
+                    .getContentAsString();
+
+            List<Hotel> result = objectMapper.readValue(
+                    jsonResult, new TypeReference<>() {
+                    });
+
+            List<Hotel> cleanedResult = result.stream()
+                    .collect(Collectors.toList());
+
+            verify(hotelService, times(1))
+                    .findHotels();
+
+            assertThat(cleanedResult).isEqualTo(expectedList);
+
+            clearInvocations(hotelService);
+        }
+    }
 
     @Test
     public void testFindHotelsByLocation() throws Exception {
@@ -132,7 +127,6 @@ public class HotelControllerTests {
                     });
 
             List<Hotel> cleanedResult = result.stream()
-//                    .map(hotel -> hotel.withId(null))
                     .collect(Collectors.toList());
 
             verify(hotelService, times(1))
@@ -146,6 +140,135 @@ public class HotelControllerTests {
 
     @Test
     public void testFindRooms() throws Exception {
+        List<Room> emptyRooms = new ArrayList<>();
+        Hotel hotel = new Hotel(4L, "HLT", "Hampton Inn by Hilton", "310 4th Ave S",
+                "Nashville", "TN", "37201", "USA", emptyRooms);
+        List<Room> rooms = new ArrayList<>();
+        Room room1 = Room.builder()
+                .guests(2)
+                .roomCode("king")
+                .price(570.0)
+                .currency("USD")
+                .hotel(hotel)
+                .build();
+        rooms.add(room1);
+        Room room2 = Room.builder()
+                .guests(1)
+                .roomCode("queen")
+                .price(240.0)
+                .currency("USD")
+                .hotel(hotel)
+                .build();
+        rooms.add(room2);
+        Room room3 = Room.builder()
+                .guests(3)
+                .roomCode("double-double")
+                .price(620.0)
+                .currency("USD")
+                .hotel(hotel)
+                .build();
+        rooms.add(room3);
+
+        for (Room expected : rooms) {
+
+            List<Room> expectedList = new ArrayList<>(1);
+            expectedList.add(expected);
+
+            when(roomService.findAllRooms())
+                    .thenReturn(expectedList);
+
+            String jsonResult = mockMvc.perform(
+                    MockMvcRequestBuilders
+                            .get("/" + ROOMS))
+                    .andExpect(status().isOk())
+                    .andReturn()
+                    .getResponse()
+                    .getContentAsString();
+
+            List<Room> result = objectMapper.readValue(
+                    jsonResult, new TypeReference<>() {
+                    });
+
+            List<Room> cleanedResult = result.stream()
+                    .map(room -> room.withId(null))
+                    .collect(Collectors.toList());
+
+            verify(roomService, times(1)).findAllRooms();
+
+            assertThat(cleanedResult).isEqualTo(expectedList);
+
+            clearInvocations(roomService);
+        }
+    }
+
+    @Test
+    public void testFindBestPrice() throws Exception {
+        List<Room> emptyRooms = new ArrayList<>();
+        Hotel hotel = new Hotel(4L, "HLT", "Hampton Inn by Hilton", "310 4th Ave S",
+                "Nashville", "TN", "37201", "USA", emptyRooms);
+        List<Room> rooms = new ArrayList<>();
+        Room room1 = Room.builder()
+                .guests(2)
+                .roomCode("king")
+                .price(570.0)
+                .currency("USD")
+                .hotel(hotel)
+                .build();
+        rooms.add(room1);
+        Room room2 = Room.builder()
+                .guests(1)
+                .roomCode("queen")
+                .price(240.0)
+                .currency("USD")
+                .hotel(hotel)
+                .build();
+        rooms.add(room2);
+        Room room3 = Room.builder()
+                .guests(3)
+                .roomCode("double-double")
+                .price(620.0)
+                .currency("USD")
+                .hotel(hotel)
+                .build();
+        rooms.add(room3);
+
+        for (Room expected : rooms) {
+
+            List<Room> expectedList = new ArrayList<>(1);
+            expectedList.add(expected);
+
+            when(roomService.findBestPrice(expected.getRoomCode(), expected.getCurrency()))
+                    .thenReturn(expectedList);
+
+            String jsonResult = mockMvc.perform(
+                    MockMvcRequestBuilders
+                            .get("/" + BEST_PRICE)
+                            .queryParam("roomCode", expected.getRoomCode())
+                            .queryParam("currency", expected.getCurrency()))
+                    .andExpect(status().isOk())
+                    .andReturn()
+                    .getResponse()
+                    .getContentAsString();
+
+            List<Room> result = objectMapper.readValue(
+                    jsonResult, new TypeReference<>() {
+                    });
+
+            List<Room> cleanedResult = result.stream()
+                    .map(room -> room.withId(null))
+                    .collect(Collectors.toList());
+
+            verify(roomService, times(1))
+                    .findBestPrice(expected.getRoomCode(), expected.getCurrency());
+
+            assertThat(cleanedResult).isEqualTo(expectedList);
+
+            clearInvocations(roomService);
+        }
+    }
+
+    @Test
+    public void testFindRoomsByRoomCode() throws Exception {
         List<Room> emptyRooms = new ArrayList<>();
         Hotel hotel = new Hotel(4L, "HLT", "Hampton Inn by Hilton", "310 4th Ave S",
                 "Nashville", "TN", "37201", "USA", emptyRooms);
@@ -201,82 +324,6 @@ public class HotelControllerTests {
                     .collect(Collectors.toList());
 
             verify(roomService, times(1)).findByRoomCode(expected.getRoomCode());
-
-            assertThat(cleanedResult).isEqualTo(expectedList);
-
-            clearInvocations(roomService);
-        }
-    }
-
-    @Test
-    public void testFindBestPrice() throws Exception {
-        List<Room> emptyRooms = new ArrayList<>();
-        Hotel hotel = new Hotel(4L, "HLT", "Hampton Inn by Hilton", "310 4th Ave S",
-                "Nashville", "TN", "37201", "USA", emptyRooms);
-//        List<Hotel> hotels = List.of(
-//                new Hotel(1, "MAR", "The Ritz Carlton", "10295 Collins Avenue",
-//                        "Bal Harbour", "FL", "33154", "USA", rooms),
-//                new Hotel(2, "MAR", "St.Regis", "Eighty-Eight, West Paces Ferry Rd NW",
-//                        "Atlanta", "GA", "30305", "USA", rooms),
-//                new Hotel(3, "MAR", "JW Marriott", "201 8th Ave S",
-//                        "Nashville", "TN", "37203", "USA", rooms),
-//                new Hotel(4, "HLT", "Hampton Inn by Hilton", "310 4th Ave S",
-//                        "Nashville", "TN", "37201", "USA", rooms)
-//        );
-        List<Room> rooms = new ArrayList<>();
-        Room room1 = Room.builder()
-                .guests(2)
-                .roomCode("king")
-                .price(570.0)
-                .currency("USD")
-                .hotel(hotel)
-                .build();
-        rooms.add(room1);
-        Room room2 = Room.builder()
-                .guests(1)
-                .roomCode("queen")
-                .price(240.0)
-                .currency("USD")
-                .hotel(hotel)
-                .build();
-        rooms.add(room2);
-        Room room3 = Room.builder()
-                .guests(3)
-                .roomCode("double-double")
-                .price(620.0)
-                .currency("USD")
-                .hotel(hotel)
-                .build();
-        rooms.add(room3);
-
-        for (Room expected : rooms) {
-
-            List<Room> expectedList = new ArrayList<>(1);
-            expectedList.add(expected);
-
-            when(roomService.findBestPrice(expected.getRoomCode(), expected.getCurrency()))
-                    .thenReturn(expectedList);
-
-            String jsonResult = mockMvc.perform(
-                    MockMvcRequestBuilders
-                            .get("/" + BEST_PRICE)
-                            .queryParam("roomCode", expected.getRoomCode())
-                            .queryParam("currency", expected.getCurrency()))
-                    .andExpect(status().isOk())
-                    .andReturn()
-                    .getResponse()
-                    .getContentAsString();
-
-            List<Room> result = objectMapper.readValue(
-                    jsonResult, new TypeReference<>() {
-                    });
-
-            List<Room> cleanedResult = result.stream()
-                    .map(room -> room.withId(null))
-                    .collect(Collectors.toList());
-
-            verify(roomService, times(1))
-                    .findBestPrice(expected.getRoomCode(), expected.getCurrency());
 
             assertThat(cleanedResult).isEqualTo(expectedList);
 

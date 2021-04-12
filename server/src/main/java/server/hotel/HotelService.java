@@ -22,9 +22,9 @@ public class HotelService {
     /**
      * Find all flights that match the passed {@link RoomRequest} fields.
      *
-     * @param city
-     * @param state
-     * @param country
+     * @param city city of desired hotel
+     * @param state state of desired hotel
+     * @param country country of desired hotel
      * @return A list containing all matching {@link Hotel} objects.
      */
     public List<Hotel> findHotelsByLocation(String city, String state, String country) {
@@ -33,6 +33,4 @@ public class HotelService {
                 state,
                 country);
     }
-
-    //change all mappings to Get, everything should have query params and no roomRequest needed
 }

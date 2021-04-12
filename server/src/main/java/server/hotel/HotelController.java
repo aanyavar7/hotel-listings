@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import server.common.model.Hotel;
 import server.common.model.Room;
-import server.common.model.RoomRequest;
 import server.room.RoomService;
 
 import java.util.List;
@@ -22,7 +21,7 @@ public class HotelController {
     RoomService roomService;
 
     /**
-     * Finds the list of all known hotles.
+     * Finds the list of all known hotels.
      *
      * @return A list of {@code Hotel} objects.
      */
@@ -32,11 +31,11 @@ public class HotelController {
     }
 
     /**
-     * Find all hotels that match the {@link RoomRequest} requirements.
+     * Find all hotels that match the parameter requirements.
      *
-     * @param city
-     * @param state
-     * @param country
+     * @param city city of desired hotel
+     * @param state state of desired hotel
+     * @param country country of desired hotel
      * @return A list of matching {@link Hotel} objects.
      */
     @GetMapping(HOTEL_LOCATIONS)
@@ -61,7 +60,6 @@ public class HotelController {
      * Find the best priced rooms that match the room code
      *
      * @return All {@link Room} objects that match the
-     * {@link RoomRequest} that share the lowest price.
      */
     @GetMapping(BEST_PRICE)
     List<Room> findBestPrice(
@@ -72,6 +70,12 @@ public class HotelController {
                 currency);
     }
 
+    /**
+     * Find all rooms that match given room code
+     *
+     * @param roomCode the desired room code
+     * @return A list of matching {@Link Room} objects
+     */
     @GetMapping(ROOM_CODES)
     public List<Room> findRoomsByRoomCode(
             @RequestParam String roomCode) {

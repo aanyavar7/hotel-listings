@@ -23,7 +23,7 @@ public class Hotel {
      * The name of the type of server.hotel (ex: Marriot, Hilton, etc.)
      */
     @Column(length = 3)
-    String chainName; //change to be chainName
+    String chainName;
 
     /**
      *
@@ -55,7 +55,9 @@ public class Hotel {
      */
     String country;
 
-    //list of rooms at each server.hotel
+    /**
+     * The list of rooms at each server.hotel
+     */
     @OneToMany(mappedBy = "hotel")
     List<Room> rooms;
 }

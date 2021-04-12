@@ -11,18 +11,29 @@ import lombok.*;
 @With
 @Builder
 public class RoomRequest {
-    //city you want to find a hotel/room in
+
+    /**
+     * The city you want to find a hotel/room in
+     */
     String city;
 
-    //state you want to find a hotel/room in
+    /**
+     * The state you want to find a hotel/room in
+     */
     String state;
 
-    //country you want to find a hotel/room in
+    /**
+     * The country you want to find a hotel/room in
+     */
     String country;
 
-    //total number of guests
+    /**
+     * The total number of guests
+     */
     Integer guests;
 
-    //type of room you want (ex: queen, king, etc.)
+    /**
+     * type of room you want (ex: queen, king, etc.)
+     */
     String roomCode;
 }
