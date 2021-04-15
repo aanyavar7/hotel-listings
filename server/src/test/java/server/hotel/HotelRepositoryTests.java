@@ -73,7 +73,7 @@ public class HotelRepositoryTests {
 
         entityManager.flush();
 
-        List<Hotel> results = repository.findHotelsByCityAndStateAndCountry("Atlanta", "GA", "USA");
+        List<Hotel> results = repository.findByCityAndStateAndCountry("Atlanta", "GA", "USA");
 
         assertEquals(List.of(expected.get(1)), results);
     }

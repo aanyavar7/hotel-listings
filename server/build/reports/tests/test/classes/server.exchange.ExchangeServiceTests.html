@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - ExchangeServiceTests</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>ExchangeServiceTests</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/server.exchange.html">server.exchange</a> &gt; ExchangeServiceTests</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.004s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">testExchangeRate()</td>
+<td class="success">0.004s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>2021-04-15 13:18:47.118  INFO 6421 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [server.exchange.ExchangeServiceTests], using SpringBootContextLoader
+2021-04-15 13:18:47.120  INFO 6421 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [server.exchange.ExchangeServiceTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-04-15 13:18:47.120  INFO 6421 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [server.exchange.ExchangeServiceTests]: ExchangeServiceTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2021-04-15 13:18:47.129  INFO 6421 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration server.HotelApplication for test class server.exchange.ExchangeServiceTests
+2021-04-15 13:18:47.131  INFO 6421 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2021-04-15 13:18:47.133  INFO 6421 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@8ab59a3, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@45188bfa, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@3dd947c7, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4735c62d, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@1581e929, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1447e738, org.springframework.test.context.transaction.TransactionalTestExecutionListener@63d77d08, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@a3adbf1, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@1068a33e, org.springframework.test.context.event.EventPublishingTestExecutionListener@3b3df82c, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@63dafd7e, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@3f6357a7, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@6a476226, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@3e6f1bda, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@a6a2064, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@2f1190e1, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@7e968177]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.4.3)
+
+2021-04-15 13:18:47.158  INFO 6421 --- [    Test worker] server.exchange.ExchangeServiceTests     : Starting ExchangeServiceTests using Java 11.0.10 on Hannahs-MacBook-Pro-2.local with PID 6421 (started by hannahschrager in /Users/hannahschrager/Desktop/Independent Study/hotel-listings/server)
+2021-04-15 13:18:47.159  INFO 6421 --- [    Test worker] server.exchange.ExchangeServiceTests     : No active profile set, falling back to default profiles: default
+2021-04-15 13:18:47.296  INFO 6421 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-04-15 13:18:47.319  INFO 6421 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 3 JPA repository interfaces.
+2021-04-15 13:18:47.466  INFO 6421 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-04-15 13:18:47.470  INFO 6421 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2021-04-15 13:18:47.471  INFO 6421 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2021-04-15 13:18:47.471  INFO 6421 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-04-15 13:18:47.498  INFO 6421 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-04-15 13:18:47.498  INFO 6421 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-04-15 13:18:47.532  WARN 6421 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-04-15 13:18:47.843  INFO 6421 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Or [Ant [pattern='/oauth/token'], Ant [pattern='/oauth/token_key'], Ant [pattern='/oauth/check_token']] with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2674bb4b, org.springframework.security.web.context.SecurityContextPersistenceFilter@619bc89f, org.springframework.security.web.header.HeaderWriterFilter@2df4318c, org.springframework.security.web.authentication.logout.LogoutFilter@687890cd, org.springframework.security.oauth2.provider.client.ClientCredentialsTokenEndpointFilter@1d88c001, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@711201e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@501e787b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5c6a4ba5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@36ce2d3, org.springframework.security.web.session.SessionManagementFilter@58da6475, org.springframework.security.web.access.ExceptionTranslationFilter@22b260cf, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6742a431]
+2021-04-15 13:18:47.857  INFO 6421 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Or [Ant [pattern='/login'], Ant [pattern='/oauth/authorize']] with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1840fe75, org.springframework.security.web.context.SecurityContextPersistenceFilter@74b33d79, org.springframework.security.web.header.HeaderWriterFilter@7cb2f317, org.springframework.security.web.csrf.CsrfFilter@68c11b81, org.springframework.security.web.authentication.logout.LogoutFilter@5da77904, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@519f61fb, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@4d26c9a6, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@7ccb9861, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4347c1d1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2886a8e5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@70460b13, org.springframework.security.web.session.SessionManagementFilter@144e2162, org.springframework.security.web.access.ExceptionTranslationFilter@6d8b490f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@59eabd66]
+2021-04-15 13:18:47.866  INFO 6421 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfiguration$NotOAuthRequestMatcher@9de8a82 with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@76ab068d, org.springframework.security.web.context.SecurityContextPersistenceFilter@6a88b661, org.springframework.security.web.header.HeaderWriterFilter@7a4dd72b, org.springframework.security.web.authentication.logout.LogoutFilter@78e3a9c4, org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationProcessingFilter@20887a48, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3f762dda, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2b164190, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4ab51977, org.springframework.security.web.session.SessionManagementFilter@6962bfe8, org.springframework.security.web.access.ExceptionTranslationFilter@5d010557, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6ae7e7ac]
+2021-04-15 13:18:48.012  INFO 6421 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-15 13:18:48.033  INFO 6421 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:db'
+2021-04-15 13:18:48.177  INFO 6421 --- [    Test worker] server.exchange.ExchangeServiceTests     : Started ExchangeServiceTests in 1.042 seconds (JVM running for 9.795)
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 6.7</a> at Apr 15, 2021, 1:18:50 PM</p>
+</div>
+</div>
+</body>
+</html>

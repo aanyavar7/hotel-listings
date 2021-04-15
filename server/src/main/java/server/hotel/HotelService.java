@@ -28,7 +28,7 @@ public class HotelService {
      * @return A list containing all matching {@link Hotel} objects.
      */
     public List<Hotel> findHotelsByLocation(String city, String state, String country) {
-        return repository.findHotelsByCityAndStateAndCountry(
+        return repository.findByCityAndStateAndCountry(
                 city,
                 state,
                 country);

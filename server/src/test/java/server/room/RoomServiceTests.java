@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 // Ensure that app does not create and populate repositories.
-@SpringBootTest(properties = {"spring.config.name="})
+@SpringBootTest(properties = {"spring.datasource.data="})
 public class RoomServiceTests {
 
     @MockBean

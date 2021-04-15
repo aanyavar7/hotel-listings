@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import server.common.model.Hotel;
 import server.common.model.Room;
 import server.room.RoomService;
+import server.security.AuthStatefulSecurityConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +25,10 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static server.common.Constants.EndPoint.*;
 
-@SpringBootTest(properties = {"spring.config.name="})
+@SpringBootTest(properties = {"spring.datasource.data="})
+@Import(AuthStatefulSecurityConfig.class)
 @AutoConfigureMockMvc
-@WithMockUser(username="user",roles={"USER"})
-//@Ignore
+@WithMockUser(username = "user0", roles = {"USER"})
 public class HotelControllerTests {
     @Autowired
     private MockMvc mockMvc;

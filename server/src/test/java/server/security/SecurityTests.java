@@ -1,10 +1,11 @@
 package server.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -15,18 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest(properties = {
-        "spring.jpa.properties.hibernate.show_sql=false",
-        "spring.config.name=flight-test-h2",
-        "flight.datasource.url=jdbc:h2:mem:trxServiceStatus"
-})
+@SpringBootTest
 @AutoConfigureMockMvc
+@Import(AuthStatefulSecurityConfig.class)
 public class SecurityTests {
 
     @Autowired
@@ -35,32 +30,24 @@ public class SecurityTests {
     @Autowired
     private ObjectMapper objectMapper;
 
-    //@Test
+    @Test
     public void testDefaultRequireAuthentication() throws Exception {
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/" + UUID.randomUUID().toString()))
-                .andExpect(status().is3xxRedirection());
+                MockMvcRequestBuilders.get("/" + UUID.randomUUID()))
+                .andExpect(status().is4xxClientError());
     }
 
     public void testRequireAuthenticationForAccountUser() throws Exception {
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/account" ))
-                .andExpect(status().is3xxRedirection());
+                MockMvcRequestBuilders.get("/account"))
+                .andExpect(status().is4xxClientError());
     }
 
-    //@Test
-    @WithMockUser(username="user",roles={"NOTUSER"})
-    public void testRequireUserRoleForAccountUser() throws Exception {
-        mockMvc.perform(
-                MockMvcRequestBuilders.get("/account" ))
-                .andExpect(status().isForbidden());
-    }
-
-    //@Test
-    @WithMockUser(username="user",roles={"USER"})
+    @Test
+    @WithMockUser(username = "user0", roles = {"USER"})
     public void testAccountUser() throws Exception {
         String result = mockMvc.perform(
-                MockMvcRequestBuilders.get("/account" ))
+                MockMvcRequestBuilders.get("/account"))
                 .andExpect(status().isOk())
                 .andReturn()
                 .getResponse()
@@ -68,74 +55,15 @@ public class SecurityTests {
 
         UserDetailsImpl user = objectMapper.readValue(result, UserDetailsImpl.class);
 
-        Assertions.assertEquals("user", user.getUsername());
-        Assertions.assertTrue(user.isAccountNonExpired());
-        Assertions.assertTrue(user.isAccountNonLocked());
-        Assertions.assertTrue(user.isCredentialsNonExpired());
-        Assertions.assertTrue(user.isEnabled());
-        Assertions.assertEquals(1, user.getAuthorities().size());
-        Assertions.assertEquals("ROLE_USER", user.getAuthorities().iterator().next().getAuthority());
+        assertThat(user.getUsername()).isEqualTo("user0");
+        assertThat(user.isAccountNonExpired()).isTrue();
+        assertThat(user.isAccountNonLocked()).isTrue();
+        assertThat(user.isCredentialsNonExpired()).isTrue();
+        assertThat(user.isEnabled()).isTrue();
+        assertThat(user.getAuthorities().size()).isEqualTo(1);
+        assertThat(user.getAuthorities().iterator().next().getAuthority()).isEqualTo("ROLE_USER");
     }
 
-    //@Test
-    @WithMockUser(username="admin",roles={"USER"})
-    public void testRequireAdminRoleForAccountCreation() throws Exception {
-        mockMvc.perform(
-                MockMvcRequestBuilders.post("/account" )
-                        .with(csrf())
-                        .queryParam("username","bob")
-                        .queryParam("password","pass"))
-                .andExpect(status().isForbidden());
-    }
-
-    //@Test
-    @WithMockUser(username="admin",roles={"USER","ADMIN"})
-    public void testAccountCreation() throws Exception {
-        String result = mockMvc.perform(
-                MockMvcRequestBuilders.post("/account")
-                        .with(csrf())
-                        .queryParam("username", "bob")
-                        .queryParam("password", "pass"))
-                .andExpect(status().isOk())
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-
-        UserDetailsImpl user = objectMapper.readValue(result, UserDetailsImpl.class);
-
-        Assertions.assertEquals("bob", user.getUsername());
-        Assertions.assertTrue(user.isAccountNonExpired());
-        Assertions.assertTrue(user.isAccountNonLocked());
-        Assertions.assertTrue(user.isCredentialsNonExpired());
-        Assertions.assertTrue(user.isEnabled());
-        Assertions.assertEquals(1, user.getAuthorities().size());
-        Assertions.assertEquals("ROLE_USER", user.getAuthorities().iterator().next().getAuthority());
-
-        mockMvc.perform(formLogin().user("bob").password("passWRD"))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/login?error"));
-
-        mockMvc.perform(formLogin().user("bob").password("pass"))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/"));
-
-        result = mockMvc.perform(
-                MockMvcRequestBuilders.get("/account" ).with(user("bob")))
-                .andExpect(status().isOk())
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-
-        user = objectMapper.readValue(result, UserDetailsImpl.class);
-
-        Assertions.assertEquals("bob", user.getUsername());
-        Assertions.assertTrue(user.isAccountNonExpired());
-        Assertions.assertTrue(user.isAccountNonLocked());
-        Assertions.assertTrue(user.isCredentialsNonExpired());
-        Assertions.assertTrue(user.isEnabled());
-        Assertions.assertEquals(1, user.getAuthorities().size());
-        Assertions.assertEquals("ROLE_USER", user.getAuthorities().iterator().next().getAuthority());
-    }
 
     private static class SimplerGrantedAuthority implements GrantedAuthority {
 
@@ -160,7 +88,8 @@ public class SecurityTests {
         private boolean isAccountNonLocked;
         private boolean isEnabled;
 
-        public UserDetailsImpl(){}
+        public UserDetailsImpl() {
+        }
 
         @Override
         public String getUsername() {

@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 // Ensure that app does not create and populate repositories.
-@SpringBootTest(properties = {"spring.config.name="})
+@SpringBootTest(properties = {"spring.datasource.data="})
 public class HotelServiceTests {
     @MockBean
     HotelRepository hotelRepository;
@@ -58,13 +58,13 @@ public class HotelServiceTests {
         String state = "state";
         String country = "country";
 
-        when(hotelRepository.findHotelsByCityAndStateAndCountry(city, state, country))
+        when(hotelRepository.findByCityAndStateAndCountry(city, state, country))
                 .thenReturn(expected);
 
         assertThat(hotelService.findHotelsByLocation(city, state, country))
                 .isEqualTo(expected);
 
         verify(hotelRepository, times(1))
-                .findHotelsByCityAndStateAndCountry(city, state, country);
+                .findByCityAndStateAndCountry(city, state, country);
     }
 }
