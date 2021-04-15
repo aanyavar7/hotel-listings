@@ -9,10 +9,8 @@ server/hotel/HotelControllerTests.java
  server.hotel.HotelControllerTests$3
  server.hotel.HotelControllerTests$4
  server.hotel.HotelControllerTests$5
-server/security/SecurityTests.java
- server.security.SecurityTests
- server.security.SecurityTests$SimplerGrantedAuthority
- server.security.SecurityTests$UserDetailsImpl
+server/room/RoomServiceTests.java
+ server.room.RoomServiceTests
 server/hotel/HotelRepositoryTests.java
  server.hotel.HotelRepositoryTests
 server/security/AuthStatefulSecurityConfig.java
@@ -21,5 +19,7 @@ server/exchange/ExchangeServiceTests.java
  server.exchange.ExchangeServiceTests
 server/hotel/HotelServiceTests.java
  server.hotel.HotelServiceTests
-server/room/RoomServiceTests.java
- server.room.RoomServiceTests
+server/security/SecurityTests.java
+ server.security.SecurityTests
+ server.security.SecurityTests$SimplerGrantedAuthority
+ server.security.SecurityTests$UserDetailsImpl

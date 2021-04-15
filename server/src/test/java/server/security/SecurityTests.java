@@ -19,7 +19,7 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
+@SpringBootTest(properties = {"spring.datasource.data="})
 @AutoConfigureMockMvc
 @Import(AuthStatefulSecurityConfig.class)
 public class SecurityTests {
