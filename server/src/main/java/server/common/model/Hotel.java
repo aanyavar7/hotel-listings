@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * Data structure that defines information about an airport.
+ * Data structure that defines information about a hotel.
  */
 @Value
 @RequiredArgsConstructor

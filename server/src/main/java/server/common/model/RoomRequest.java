@@ -3,7 +3,7 @@ package server.common.model;
 import lombok.*;
 
 /**
- * Data structure that defines a request for a flight.
+ * Data structure that defines a request for a room.
  */
 @Value
 @RequiredArgsConstructor

@@ -8,7 +8,7 @@ import server.common.model.Room;
 import java.util.List;
 
 /**
- * Hotel Room repository.
+ * Room repository.
  */
 @Repository
 public interface RoomRepository extends JpaRepository<Room, Long> {

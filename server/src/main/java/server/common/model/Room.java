@@ -5,9 +5,9 @@ import lombok.*;
 import javax.persistence.*;
 
 /**
- * Data structure that defines a response for a flight, which is
- * returned by various microservices to indicate which flights
- * match a {@code FlightRequest}.
+ * Data structure that defines a response for a room, which is
+ * returned by various microservices to indicate which rooms
+ * match a {@code RoomRequest}.
  */
 @Value
 @RequiredArgsConstructor

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Hotel Room service.
+ * Room service.
  */
 @Service
 public class RoomService {
